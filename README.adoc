@@ -1,0 +1,27 @@
+= Not Too High
+
+== Elevator Pitch
+This application is specifically for my mother. She is a math teacher who specializes in
+early childhood education, and has been exploring card games as a means of "learn-by-play".
+
+Unfortunately her favorite example is out of print, but no worries - I can recreate it as
+an online experience, and even have some other games of the same format too!
+
+"Same format"? Oh, yeah, each of these games will follow the following format:
+* Each player always has some amount of cards in their hand, usually around 4.
+* Players must play cards that add to an invisible value that everyone keeps track of. (Addition yay!)
+** ...this is done automatically in this web version.
+* Going above a set value (maybe 50 or 99) is bad. Very bad. Don't do that.
+
+== Key Features
+* Code-based rooms (borrowed from my last 260 startup attempt)
+* Decide between cards in your hand
+* 
+
+== Technologies
+* HTML: One page for account customization, one page for hosting or joining a game, one page for the game itself.
+* CSS: Well how else do you expect me to make the cards look like cards?
+* React: Provides login and cards.
+* Service: Most of the game logic is kept server-side to prevent easy hacking.
+* DB/Login: Credentials securely stored in database.
+* WebSocket: Distributes the state of the game as it changes.

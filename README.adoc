@@ -14,7 +14,7 @@ an online experience, and even have some other games of the same format too!
 * Going above a set value (maybe 50 or 99) is bad. Very bad. Don't do that.
 
 == Design
-image::website.png
+image::website.png[]
 
 == Key Features
 * Code-based rooms (borrowed from my last 260 startup attempt)

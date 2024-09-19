@@ -13,6 +13,14 @@ an online experience, and even have some other games of the same format too!
 ** ...this is done automatically in this web version.
 * Going above a set value (maybe 50 or 99) is bad. Very bad. Don't do that.
 
+=== Games to be featured
+* Straw (Mom's favorite. High priority!) (https://boardgamegeek.com/thread/2695471/card-distribution[card distribution])
+* Double Down / Loco 77 (Funny premise. Medium priority) (https://web.archive.org/web/20240523203241/https://blog.amigo-spiele.de/content/ap/rule/03910-GB-AmigoRule.pdf[rules and card distribution])
+* Ninety Nine (The original. Medium priority) (https://bicyclecards.com/how-to-play/99-ninety-nine/[rules])
+* Zeus on the Loose (Low priority) (https://world-of-board-games.com.sg/docs/Zeus-On-the-Loose.pdf[rules and card distribution])
+* ONO 99 (Low priority)
+* Boom-O (Just fives and tens? Lowest priority.) (https://archive.org/details/manualsbase-id-160626[rules and card distribution])
+
 == Design
 image::website.png[]
 

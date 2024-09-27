@@ -18,21 +18,20 @@
         </div>
     </header>
     <main> <!-- Here’s where everything you care about goes! --> 
-        <p>When this website is finished, you will click Create or Login first before entering credentials.</p>
-        <form method="post" action="play.html">
-            <button type="start">Login</button>
-            <button type="start">Create</button>
+        <p>Let's play a game!</p>
+        <p>Note that we only have blind-play.html right now. The intended "play" page is far too graphical for me to jump the gun there, imo</p>
+        <form method="post" action="blind-play.html">
+            <button type="start">Host</button>
+            <button type="start">Join</button>
             <div>
-                <span>@</span>
-                <input type="text" placeholder="your@email.com" disabled />
+                <select name="gameType">
+                    <option selected>Straw</option>
+                </select>
+                <input type="text" placeholder="game code" disabled />
             </div>
             <div>
-                <span>🔒</span>
-                <input type="password" placeholder="password" disabled />
-            </div>
-            <div>
-                <span>🔒</span>
-                <input type="password" placeholder="confirm password" disabled />
+                <input type="checkbox" id="readercheck" name="varCheckbox" value="checkbox1" checked disabled />
+                <label for="readercheck">Narrator-Friendly Mode for the blind</label>
             </div>
             <button type="submit">Confirm</button>
         </form>

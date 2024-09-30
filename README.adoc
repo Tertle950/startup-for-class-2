@@ -36,3 +36,10 @@ image::website.png[]
 * Service: Most of the game logic is kept server-side to prevent easy hacking.
 * DB/Login: Credentials securely stored in database.
 * WebSocket: Distributes the state of the game as it changes.
+
+== HTML deliverable
+* HTML files
+** index.html
+** login.html
+** joinhost.html
+** blind-play.html (accidentally made it the same as index.html oops)

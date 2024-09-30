@@ -8,6 +8,7 @@ Unfortunately her favorite example is out of print, but no worries - I can recre
 an online experience, and even have some other games of the same format too!
 
 "Same format"? Oh, yeah, each of these games will follow the following format:
+
 * Each player always has some amount of cards in their hand, usually around 4.
 * Players must play cards that add to an invisible value that everyone keeps track of. (Addition yay!)
 ** ...this is done automatically in this web version.

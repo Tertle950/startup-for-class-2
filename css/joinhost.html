@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" /> <!-- Adds special characters. --> 
+    <link rel="icon" href="/favicon.ico"> <!-- Adds tab icon. --> 
+
+    <!-- This tag means “Please do not resize my page.” --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <title>Not Too High</title> <!-- This is what the tab text says. --> 
+</head> 
+<body> 
+    <header>
+        <h1>Not Too High</h1>
+        <!-- This website will not have a navbar. All I need is a "Back to Home" button. -->
+        <div>
+            <a href="index.html">Back to Home</a>
+        </div>
+    </header>
+    <main> <!-- Here’s where everything you care about goes! --> 
+        <p>Let's play a game!</p>
+        <p>Note that we only have blind-play.html right now. The intended "play" page is far too graphical for me to jump the gun there, imo</p>
+        <form method="post" action="blind-play.html">
+            <button type="start">Host</button>
+            <button type="start">Join</button>
+            <div>
+                <select name="gameType">
+                    <option selected>Straw</option>
+                </select>
+                <input type="text" placeholder="game code" disabled />
+            </div>
+            <div>
+                <input type="checkbox" id="readercheck" name="varCheckbox" value="checkbox1" checked disabled />
+                <label for="readercheck">Narrator-Friendly Mode for the blind</label>
+            </div>
+            <button type="submit">Confirm</button>
+        </form>
+    </main> 
+    <footer> <!-- Credit the creators here. --> 
+        <p>Not Too High designed by Thomas Ertle</p>
+        <p>(other copyright information will go here)</p>
+        <p>This is an open-source project. <a href="https://github.com/Tertle950/startup-for-class-2">Here's our Github!</a></p>
+    </footer> 
+</body> 
+</html> 

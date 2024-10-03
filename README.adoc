@@ -38,9 +38,19 @@ image::website.png[]
 * DB/Login: Credentials securely stored in database.
 * WebSocket: Distributes the state of the game as it changes.
 
-== HTML deliverable
+=== HTML deliverable
 * HTML files
 ** index.html
 ** login.html
 ** joinhost.html
 ** blind-play.html (accidentally made it the same as index.html oops)
+* Placeholders for features
+** DB: Play counts in joinhost.html
+** DB: Account system in login.html
+** WebSocket: Message list in blind-play.html
+** API: Motivational quote in joinhost.html
+** Sorry, no images yet. I am not jumping the gun with the card art.
+
+== VIVA LA RESISTANCE
+I have taken this class before and failed. The primary reason? My own skill issue. A secondary reason? Its structure; I don't want to keep refactoring my code because
+of new technologies. If you notice a "da-real-website" folder, that's what that's for. Going ahead of the curve.

@@ -52,5 +52,10 @@ image::website.png[]
 ** Sorry, no images yet. I am not jumping the gun with the card art.
 
 == VIVA LA RESISTANCE
-I have taken this class before and failed. The primary reason? My own skill issue. A secondary reason? Its structure; I don't want to keep refactoring my code because
-of new technologies. If you notice a "da-real-website" folder, that's what that's for. Going ahead of the curve.
+I have taken this class before and failed. The primary reason? My own skill issue.
+
+...A secondary reason? Its structure; I don't want to keep refactoring my code to add
+of new technologies. If you notice a "da-real-website" folder, that's what that's for.
+Going ahead of the curve.
+
+Sorry if this feels aggressive

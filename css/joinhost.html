@@ -13,33 +13,37 @@
     <title>Not Too High</title> <!-- This is what the tab text says. --> 
 </head> 
 <body> 
-    <header>
-        <h1>Not Too High</h1>
+    <header class="navbar bg-dark text-white site-header sticky-top py-2 justify-content-between">
         <!-- This website will not have a navbar. All I need is a "Back to Home" button. -->
-        <div>
-            <a href="index.html">Back to Home</a>
+        <div class="container">
+            <h1>Not Too High</h1>
+            <a class="btn btn-secondary" href="index.html">Back to Home</a>
         </div>
     </header>
-    <main> <!-- Here’s where everything you care about goes! --> 
+    <main class="container"> <!-- Here’s where everything you care about goes! --> 
         <p>Let's play a game!</p>
         <p>Note that we only have blind-play.html right now. The intended "play" page is far too graphical for me to jump the gun there, imo</p>
-        <form method="post" action="blind-play.html">
-            <button type="start">Host</button>
-            <button type="start">Join</button>
-            <div>
-                <select name="gameType">
-                    <option selected>Straw</option>
-                </select>
-                <input type="text" placeholder="game code" disabled />
+        <form class="container" method="post" action="blind-play.html">
+            <button class="col-auto btn btn-primary" type="start">Join</button>
+            <button class="col-auto btn btn-outline-primary" type="start">Host</button>
+            <div class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                    <select class="col-auto form-select" name="gameType">
+                        <option selected>Straw</option>
+                    </select
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" type="text" placeholder="XXXXXXX"/>
+                </div>
             </div>
             <div>
-                <input type="checkbox" id="readercheck" name="varCheckbox" value="checkbox1" checked disabled />
-                <label for="readercheck">Narrator-Friendly Mode for the blind</label>
+                <input class="form-check-input" type="checkbox" id="readercheck" name="varCheckbox" value="checkbox1" checked disabled />
+                <label class="form-check-label" for="readercheck">Narrator-Friendly Mode for the blind</label>
             </div>
-            <button type="submit">Confirm</button>
+            <button class="btn btn-primary" type="submit">Confirm</button>
         </form>
     </main> 
-    <footer> <!-- Credit the creators here. --> 
+    <footer class="footer fixed-bottom bg-dark text-white text-center"> <!-- Credit the creators here. --> 
         <p>Not Too High designed by Thomas Ertle</p>
         <p>(other copyright information will go here)</p>
         <p>This is an open-source project. <a href="https://github.com/Tertle950/startup-for-class-2">Here's our Github!</a></p>

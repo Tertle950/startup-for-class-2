@@ -13,34 +13,24 @@
     <title>Not Too High</title> <!-- This is what the tab text says. --> 
 </head> 
 <body> 
-    <header>
-        <h1>Not Too High</h1>
+    <header class="navbar bg-dark text-white site-header sticky-top py-2 justify-content-between">
         <!-- This website will not have a navbar. All I need is a "Back to Home" button. -->
-        <div>
-            <a href="index.html">Back to Home</a>
+        <div class="container">
+            <h1>Not Too High</h1>
+            <a class="btn btn-secondary" href="index.html">Back to Home</a>
         </div>
     </header>
-    <main> <!-- Here’s where everything you care about goes! --> 
-        <p>When this website is finished, you will click Create or Login first before entering credentials.</p>
+    <main class="container"> <!-- Here’s where everything you care about goes! --> 
+        <p>When this website is finished, logging in will work like in Google - email first, then password.</p>
         <form method="get" action="joinhost.html">
-            <button type="start">Login</button>
-            <button type="start">Create</button>
             <div>
-                <span>@</span>
-                <input type="text" placeholder="your@email.com" disabled />
+                <input class="form-control" type="text" placeholder="Enter your email..." />
             </div>
-            <div>
-                <span>🔒</span>
-                <input type="password" placeholder="password" disabled />
-            </div>
-            <div>
-                <span>🔒</span>
-                <input type="password" placeholder="confirm password" disabled />
-            </div>
-            <button type="submit">Confirm</button>
+            <button class="btn btn-primary" type="login">Sign In</button>
+            <button class="btn btn-outline-primary" type="create">Create</button>
         </form>
     </main> 
-    <footer> <!-- Credit the creators here. --> 
+    <footer class="footer fixed-bottom bg-dark text-white text-center"> <!-- Credit the creators here. --> 
         <p>Not Too High designed by Thomas Ertle</p>
         <p>(other copyright information will go here)</p>
         <p>This is an open-source project. <a href="https://github.com/Tertle950/startup-for-class-2">Here's our Github!</a></p>

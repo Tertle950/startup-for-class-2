@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" /> <!-- Adds special characters. --> 
+    <link rel="icon" href="/favicon.ico"> <!-- Adds tab icon. --> 
+
+    <!-- This tag means “Please do not resize my page.” --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+    <!-- Bootstrap sux but here it is anyway! -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Not Too High</title> <!-- This is what the tab text says. --> 
+</head> 
+<body> 
+    <header class="navbar bg-dark text-white site-header sticky-top py-2 justify-content-between">
+        <!-- This website will not have a navbar. All I need is a "Back to Home" button. -->
+        <div class="container">
+            <h1>Not Too High</h1>
+            <a class="btn btn-secondary" href="index.html">Back to Home</a>
+        </div>
+    </header>
+    <main class="container"> <!-- Here’s where everything you care about goes! --> 
+        <p>Let's play a game!</p>
+        <p>Note that we only have blind-play.html right now. The intended "play" page is far too graphical for me to jump the gun there, imo</p>
+        <p>This page sucks to get Bootstrap working with!!! I blame Brend</p>
+        <form class="container" method="post" action="blind-play.html">
+            <button class="col-auto btn btn-primary" type="start">Join</button>
+            <button class="col-auto btn btn-outline-primary" type="start">Host</button>
+            <div class="row gy-2 gx-3 align-items-center">
+                <div class="col-auto">
+                    <select class="col-auto form-select" name="gameType">
+                        <option selected>Straw</option>
+                    </select
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" type="text" placeholder="XXXXXXX"/>
+                </div>
+            </div>
+            <div>
+                <input class="form-check-input" type="checkbox" id="readercheck" name="varCheckbox" value="checkbox1" checked disabled />
+                <label class="form-check-label" for="readercheck">Narrator-Friendly Mode for the blind</label>
+            </div>
+            <button class="btn btn-primary" type="submit">Confirm</button>
+        </form>
+    </main> 
+    <footer class="footer fixed-bottom bg-dark text-white text-center"> <!-- Credit the creators here. --> 
+        <p>Not Too High designed by Thomas Ertle</p>
+        <p>(other copyright information will go here)</p>
+        <p>This is an open-source project. <a href="https://github.com/Tertle950/startup-for-class-2">Here's our Github!</a></p>
+    </footer> 
+</body> 
+</html> 

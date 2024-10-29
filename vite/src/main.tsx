@@ -1,6 +1,14 @@
 //import { StrictMode } from 'react'
 import React from 'react';
+//import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
+import {
+	BrowserRouter,
+	NavLink,
+	Routes,
+	Navigate,
+	Route
+  } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Container from 'react-bootstrap/Container';
@@ -22,9 +30,9 @@ const Home: React.FC = () => {
 createRoot(document.getElementById('root')!).render(
 	<div>
 		<header className="navbar bg-dark text-white site-header sticky-top py-2 justify-content-between">
-			<h1 className="container">Not Too High</h1>
+			<NavLink to="/"><h1 className="container">Not Too High</h1></NavLink>
 		</header>
-		<Home />
+		<Route path="/" element={<Home />} exact />
 		<footer className="footer fixed-bottom bg-dark text-white text-center">
 			<div>Not Too High designed by Thomas Ertle</div>
 			<div>(other copyright information will go here)</div>

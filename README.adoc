@@ -51,6 +51,14 @@ image::website.png[]
 ** API: Motivational quote in joinhost.html
 ** Sorry, no images yet. I am not jumping the gun with the card art.
 
+=== CSS deliverable
+* Bootstrap everywhere
+** so it's PROBABLY responsive
+** but this was really just a quick and dirty thing
+* Sorry, no proper styling yet. I'm in too much pain.
+
+What I _really_ gotta work on is the "real" website. But I don't have time right now.
+
 == VIVA LA RESISTANCE
 I have taken this class before and failed. The primary reason? My own skill issue.
 

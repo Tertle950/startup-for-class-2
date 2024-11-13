@@ -20,8 +20,16 @@ import {
 	Col,
 	InputGroup,
 	Form,
-	DropdownButton
+	DropdownButton,
+	DropdownItem,
+	DropdownMenu
 } from 'react-bootstrap';
+
+import {
+	JoinHost,
+	JoinHost_Host,
+	JoinHost_Join
+} from './joinhost.tsx'
 
 const Home: React.FC = () => {
 	return (
@@ -40,63 +48,7 @@ const Home: React.FC = () => {
 	);
 };
 
-const JoinHost: React.FC = () => {
-	const IsPrimary = true;
 
-	return (
-		<Container>
-			<p>
-				Let's play a game! Want to join a game, or host one?
-			</p>
-			<Row>
-				<Col><Link to="/join-host/join"><Button variant={IsPrimary ? "primary" : "secondary"} className="w-100">Join</Button></Link></Col>
-				<Col><Link to="/join-host/host"><Button variant={IsPrimary ? "outline-primary" : "outline-secondary"} className="w-100">Host</Button></Link></Col>
-			</Row>
-		</Container>
-	);
-}
-
-const JoinHost_Join: React.FC = () => {
-	return (
-		
-		<>
-			<JoinHost IsPrimary={false} />
-			<p></p>
-			<Container>
-				<Row>
-					<Col sm="4">
-						<InputGroup className="mb-3">
-							<DropdownButton
-								variant="outline-secondary"
-								title="Game"
-								id="game-select"
-							>
-								<Dropdown.Item href="#">Straw</Dropdown.Item>
-							</DropdownButton>
-							<Form.Control aria-label="ID" placeholder="XXX-XXX-XX" />
-						</InputGroup>	
-					</Col>
-					<Col>
-						<Link to="/play"><Button className="w-100">Start</Button></Link>
-					</Col>
-				</Row>
-				
-			</Container>
-		</>
-	)
-}
-
-const JoinHost_Host: React.FC = () => {
-	return (
-		<>
-			<JoinHost />
-			<p></p>
-			<Container>
-				<p>nothing here yet</p>
-			</Container>
-		</>
-	)
-}
 
 const MainPage: React.FC = () => {
 	return (
@@ -114,7 +66,7 @@ const MainPage: React.FC = () => {
 		<main>
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/join-host" element={<JoinHost />} />
+				<Route path="/join-host" element={<JoinHost IsPrimary={true} />} />
 				<Route path="/join-host/join/*" element={<JoinHost_Join />} />
 				<Route path="/join-host/host" element={<JoinHost_Host />} />
 			</Routes>

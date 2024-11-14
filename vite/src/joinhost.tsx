@@ -12,10 +12,10 @@ import {
 	Col,
 	InputGroup,
 	Form,
-	DropdownButton,
-	DropdownItem,
-	DropdownMenu
+	ListGroup,
+	ListGroupItem
 } from 'react-bootstrap';
+import InputGroupText from 'react-bootstrap/esm/InputGroupText';
 
 // Is this really necessary!?
 interface IsPrimaryProps {
@@ -39,11 +39,16 @@ export const JoinHost: React.FC<IsPrimaryProps> = ({ IsPrimary = true }) => {
 export const JoinHost_Join: React.FC = () => {
     // State to store the selected game text
     const [selectedGame, setSelectedGame] = useState("Straw");
+	const [code, setCode] = useState("");
 
     // Handler for selecting an option from the dropdown
     const handleSelect = (eventKey: string | null) => {
         if (eventKey) setSelectedGame(eventKey);
     };
+
+	const codeOnChange = (e: any) => { // i dunno e's type lol
+		setCode(e.target.value);
+	}
 
 	return (
 		<>
@@ -59,29 +64,61 @@ export const JoinHost_Join: React.FC = () => {
 								</Dropdown.Toggle>
 								<Dropdown.Menu>
 									<Dropdown.Item eventKey="Straw">Straw</Dropdown.Item>
-                                    <Dropdown.Item eventKey="Straw 100">Straw 100 (test variant)</Dropdown.Item>
+                                    <Dropdown.Item eventKey="Straw25">Straw 25 (test variant)</Dropdown.Item>
 								</Dropdown.Menu>
 							</Dropdown>
-							<Form.Control aria-label="ID" placeholder="XXX-XXX-XX" />
+							<Form.Control aria-label="ID" placeholder="XXXXX" value={code} onChange={(e) => codeOnChange(e)} type="text" />
 						</InputGroup>	
 					</Col>
 					<Col>
-						<Link to="/play"><Button className="w-100">Start</Button></Link>
+						<Link to={"/play/"+selectedGame+"/"+code}><Button className="w-100">Start</Button></Link>
 					</Col>
 				</Row>
-				
+				<p>
+					Test for proper reception: {selectedGame}-{code}
+				</p>
 			</Container>
 		</>
 	)
 }
 
 export const JoinHost_Host: React.FC = () => {
+	const [selectedGame, setSelectedGame] = useState("(select)");
+	const [code, setCode] = useState("");
+
+	// Handler for selecting an option from the dropdown
+    const handleSelect = (eventKey: string | null) => {
+        if (eventKey) {
+			setSelectedGame(eventKey);
+			setCode("RANDOM-NUMBER-GOES-HERE");
+		}
+    };
+
 	return (
 		<>
 			<JoinHost IsPrimary={false} />
 			<p></p>
 			<Container>
-				<p>nothing here yet</p>
+				<InputGroup className="mb-3 justify-content-center" size="lg">
+					<Dropdown onSelect={handleSelect}>
+						<Dropdown.Toggle variant="outline-primary" id="game-select">
+							{selectedGame}
+						</Dropdown.Toggle>
+						<Dropdown.Menu>
+							<Dropdown.Item eventKey="Straw">Straw</Dropdown.Item>
+							<Dropdown.Item eventKey="Straw25">Straw 25 (test variant)</Dropdown.Item>
+						</Dropdown.Menu>
+					</Dropdown>
+					<InputGroupText>{code}</InputGroupText>
+				</InputGroup>
+				<Link to={"/play/"+selectedGame+"/"+code}><Button className="w-100">Start</Button></Link>
+				<p></p>
+				<p>Players joining so far:</p>
+				<ListGroup>
+					<ListGroupItem>John Doe</ListGroupItem>
+					<ListGroupItem>Jane Doe</ListGroupItem>
+					<ListGroupItem>Doe A. Deer</ListGroupItem>
+				</ListGroup>
 			</Container>
 		</>
 	)

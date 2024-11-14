@@ -44,6 +44,9 @@ const Home: React.FC = () => {
 			<p>
 				<b><Link to="/join-host">Click here to start playing!</Link></b>
 			</p>
+			<p>
+				<b><Link to="/login">Click here to go to the non-working login screen!</Link></b>
+			</p>
 		</Container>
 	);
 };
@@ -59,10 +62,7 @@ const MainPage: React.FC = () => {
 				<Link to="/"><Button className="btn-secondary">Home</Button></Link>
 			</div>
 		</header>
-		<p>
-
-		</p>
-		
+		<p></p>
 		<main>
 			<Routes>
 				<Route path="/" element={<Home />} />

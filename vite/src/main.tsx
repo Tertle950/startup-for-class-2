@@ -15,14 +15,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	Container,
 	Button,
-	Dropdown,
-	Row,
-	Col,
-	InputGroup,
-	Form,
-	DropdownButton,
-	DropdownItem,
-	DropdownMenu
 } from 'react-bootstrap';
 
 import {

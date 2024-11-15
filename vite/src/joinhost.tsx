@@ -85,6 +85,7 @@ export const JoinHost_Join: React.FC = () => {
 export const JoinHost_Host: React.FC = () => {
 	const [selectedGame, setSelectedGame] = useState("(select)");
 	const [code, setCode] = useState("#####");
+	const [canPlay, setCanPlay] = useState(false);
 
 	// Handler for selecting an option from the dropdown
     const handleSelect = (eventKey: string | null) => {
@@ -92,6 +93,7 @@ export const JoinHost_Host: React.FC = () => {
 			setSelectedGame(eventKey);
 			setCode("RANDO");
 			// TODO: The Join button shouldn't work with less than 2 players.
+			setCanPlay(true);
 		}
     };
 
@@ -112,7 +114,9 @@ export const JoinHost_Host: React.FC = () => {
 					</Dropdown>
 					<InputGroupText>{code}</InputGroupText>
 				</InputGroup>
-				<Link to={"/play/"+selectedGame+"/"+code} ><Button className="w-100">Start</Button></Link>
+				<Link to={canPlay ? "/play/"+selectedGame+"/"+code : "#"}>
+					<Button className="w-100" disabled={!canPlay}>{canPlay ? "Start" : "Please wait..."}</Button>
+				</Link>
 				<p></p>
 				<p>Players joining so far:</p>
 				<ListGroup>

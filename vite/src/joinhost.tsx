@@ -40,6 +40,7 @@ export const JoinHost_Join: React.FC = () => {
     // State to store the selected game text
     const [selectedGame, setSelectedGame] = useState("Straw");
 	const [code, setCode] = useState("");
+	const [canPlay, setCanPlay] = useState(false);
 
     // Handler for selecting an option from the dropdown
     const handleSelect = (eventKey: string | null) => {
@@ -48,6 +49,7 @@ export const JoinHost_Join: React.FC = () => {
 
 	const codeOnChange = (e: any) => { // i dunno e's type lol
 		setCode(e.target.value);
+		setCanPlay(code != "");
 	}
 
 	return (
@@ -71,7 +73,9 @@ export const JoinHost_Join: React.FC = () => {
 						</InputGroup>	
 					</Col>
 					<Col>
-						<Link to={"/play/"+selectedGame+"/"+code}><Button className="w-100">Start</Button></Link>
+						<Link to={canPlay ? "/play/"+selectedGame+"/"+code : "#"}>
+						<Button className="w-100" disabled={!canPlay}>{canPlay ? "Start" : "Enter a code..."}</Button>
+					</Link>
 					</Col>
 				</Row>
 				<p>

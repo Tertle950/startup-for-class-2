@@ -23,6 +23,12 @@ import {
 	JoinHost_Join
 } from './joinhost.tsx'
 
+import {
+	Account,
+	Account_Login,
+	Account_Register
+} from './login.tsx'
+
 const Home: React.FC = () => {
 	return (
 		<Container>
@@ -37,13 +43,11 @@ const Home: React.FC = () => {
 				<b><Link to="/join-host">Click here to start playing!</Link></b>
 			</p>
 			<p>
-				<b><Link to="/login">Click here to go to the non-working login screen!</Link></b>
+				<b><Link to="/account">Click here to go to the non-working login screen!</Link></b>
 			</p>
 		</Container>
 	);
 };
-
-
 
 const MainPage: React.FC = () => {
 	return (
@@ -61,6 +65,9 @@ const MainPage: React.FC = () => {
 				<Route path="/join-host" element={<JoinHost IsPrimary={true} />} />
 				<Route path="/join-host/join/*" element={<JoinHost_Join />} />
 				<Route path="/join-host/host" element={<JoinHost_Host />} />
+				<Route path="/account" element={<Account IsPrimary={true} />} />
+				<Route path="/account/login" element={<Account_Login />} />
+				<Route path="/account/register" element={<Account_Register />} />
 			</Routes>
 		</main>
 

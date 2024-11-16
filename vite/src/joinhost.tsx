@@ -18,7 +18,7 @@ import {
 import InputGroupText from 'react-bootstrap/esm/InputGroupText';
 
 // Is this really necessary!?
-interface IsPrimaryProps {
+export interface IsPrimaryProps {
 	IsPrimary: boolean;
 }
 

@@ -29,6 +29,8 @@ import {
 	Account_Register
 } from './login.tsx'
 
+import {Play} from './play.tsx'
+
 const Home: React.FC = () => {
 	return (
 		<Container>
@@ -68,6 +70,7 @@ const MainPage: React.FC = () => {
 				<Route path="/account" element={<Account IsPrimary={true} />} />
 				<Route path="/account/login" element={<Account_Login />} />
 				<Route path="/account/register" element={<Account_Register />} />
+				<Route path="/play" element={<Play />} />
 			</Routes>
 		</main>
 

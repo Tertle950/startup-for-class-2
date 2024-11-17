@@ -60,7 +60,19 @@ image::website.png[]
 What I _really_ gotta work on is the "real" website. But I don't have time right now.
 
 === Vite/React deliverable
-In progress
+It's a week late...
+
+* Everything was redone from scratch
+* Proper-ish styling
+* There is something resembling a game interface now!
+** Why did I wait this long to actually make the freaking thing? In hindsight I should not have done that!!!
+* Interfaces everywhere
+* Woefully underprepared code
+
+Once I am done with this freaking class, I will never touch web development again if I can help it.
+
+=== Service deliverable
+It's gonna be late too!!!
 
 == VIVA LA RESISTANCE
 I have taken this class before and failed. The primary reason? My own skill issue.

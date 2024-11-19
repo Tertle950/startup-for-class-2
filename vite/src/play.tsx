@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
 	Container,
@@ -9,7 +9,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Play: React.FC = () => {
-    const [lastPlayed, setLastPlayed] = React.useState('-2');
+    const [lastPlayed, _setLastPlayed] = React.useState('-2');
 
     return (
         <Container style={{ height: '100%' }}>

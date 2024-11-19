@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client';
 import {
 	BrowserRouter,
 	Link,
-	Outlet,
+	//Outlet,
 	Routes,
 	Route
   } from 'react-router-dom';

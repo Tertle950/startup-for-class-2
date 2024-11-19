@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
 	Link
@@ -29,7 +29,7 @@ export const Account: React.FC<IsPrimaryProps> = ({ IsPrimary = true }) => {
 
 export const Account_Login: React.FC = () => {
 	const [userName, setUserName] = React.useState('');
-	const [password, setPassword] = React.useState('');
+	const [_password, setPassword] = React.useState('');
 
 	return (
 		<>
@@ -52,9 +52,9 @@ export const Account_Login: React.FC = () => {
 }
 
 export const Account_Register: React.FC = () => {
-	const [userName, setUserName] = React.useState('');
-	const [password, setPassword] = React.useState('');
-	const [confirmPassword, setConfirmPassword] = React.useState('');
+	const [_userName, setUserName] = React.useState('');
+	const [_password, setPassword] = React.useState('');
+	const [_confirmPassword, setConfirmPassword] = React.useState('');
 
 	return (
 		<>

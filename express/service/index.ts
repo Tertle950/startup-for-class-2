@@ -1,6 +1,5 @@
 const express = require('express');
 const uuid = require('uuid');
-import ViteExpress from "vite-express";
 
 // -- Classes
 

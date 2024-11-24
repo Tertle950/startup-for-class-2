@@ -13,6 +13,7 @@ class User {
 	password: string;
   salt: string;
 	token: string;
+  //loginTime: number;
 
 	constructor(name: string, email: string, password: string, salt: string, token: string) {
 		this.name = name;
@@ -20,6 +21,7 @@ class User {
 		this.password = password; // TODO needs more security
     this.salt = salt;
 		this.token = token;
+    //this.loginTime = Date.now();
 	}
 }
 
@@ -38,11 +40,11 @@ class Game {
 //var testGame = new Game(1, "s", new GameState());
 // It works! Don't listen to vscode.
 
-// -- Server stuff
-
 const app = express();
 
 const PORT: number = process.argv.length > 2 ? process.argv[2] : 3000;
+
+// -- User stuff
 
 // The users are currently saved in memory and disappear whenever the service is restarted.
 let users = new Map<string, User>([]);
@@ -57,7 +59,8 @@ app.use(`/api`, apiRouter);
 // Stolen from StackOverflow!
 // https://stackoverflow.com/a/59915458
 const requireParams = params => (req, res, next) => {
-  const reqParamList = Object.keys(req.params);
+  const reqParamList = Object.keys(req.body);
+  //console.log(reqParamList);
   const hasAllRequiredParams = params.every(param =>
     reqParamList.includes(param)
   );
@@ -72,8 +75,16 @@ const requireParams = params => (req, res, next) => {
   next();
 };
 
+/*
+apiRouter.post('/test', async (req, res) => {
+  //console.log(req);
+  console.log(req.body.password);
+  res.sendStatus(418).end();
+});
+*/
+
 // CreateAuth a new user
-apiRouter.post('/auth/create', async (req, res) => {
+apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), async (req, res) => {
   const user = users.get(req.body.email);
   if (user) {
     res.status(409).send({ msg: 'Existing user' });
@@ -92,7 +103,7 @@ apiRouter.post('/auth/create', async (req, res) => {
 });
 
 // GetAuth login an existing user
-apiRouter.post('/auth/login', async (req, res) => {
+apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req, res) => {
   const user = users.get(req.body.email);
   if (user) {
     if (Sha256.hash(user.salt + req.body.password) === user.password) {
@@ -105,7 +116,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
 
 // DeleteAuth logout a user
-apiRouter.delete('/auth/logout', (req, res) => {
+apiRouter.delete('/auth/logout', requireParams(["token"]), (req, res) => {
   const user = Object.values(users).find((u) => u.token === req.body.token);
   if (user) {
     delete user.token;
@@ -115,7 +126,7 @@ apiRouter.delete('/auth/logout', (req, res) => {
 
 apiRouter.get('/auth/list', async (req, res) => {
 	console.log(users);
-	res.status(204).end();
+	res.status(418).end();
 })
 
 // Return the application's default page if the path is unknown

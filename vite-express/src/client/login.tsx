@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
 	Link
+	//useNavigate
 } from 'react-router-dom';
 
 import {
@@ -11,11 +12,16 @@ import {
 	Col,
 } from 'react-bootstrap';
 
-import { MessageDialog } from './messageDialog.jsx';
+import {
+	MessageDialog,
+	MessageDialogLink
+} from './messageDialog.jsx';
 
 import {
 	IsPrimaryProps
 } from './joinhost.tsx'
+
+//const navigate = useNavigate();
 
 export const Account: React.FC<IsPrimaryProps> = ({ IsPrimary = true }) => {
 	return (
@@ -34,6 +40,7 @@ export const Account_Login: React.FC = () => {
 	const [password, setPassword] = React.useState('');
 
 	const [displayError, setDisplayError] = React.useState(null);
+	const [displaySuccess, setDisplaySuccess] = React.useState(null);
 
 	async function login() {
 		const endpoint: string = "/api/auth/login";
@@ -46,7 +53,7 @@ export const Account_Login: React.FC = () => {
 		});
 		if (response?.status === 200) {
 			localStorage.setItem('userName', userName);
-			props.onLogin(userName);
+			setDisplaySuccess(`✅ You are now logged in!`);
 		} else {
 			const body = await response.json();
 			setDisplayError(`⚠ Error: ${body.msg}`);
@@ -69,6 +76,7 @@ export const Account_Login: React.FC = () => {
         </div>
 		<Button className="w-100" onClick={() => login()}>Login</Button>
 		<MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
+		<MessageDialogLink message={displaySuccess} to={"/join-host"} />
 		</Container>
 		</>
 	)
@@ -81,6 +89,7 @@ export const Account_Register: React.FC = () => {
 	const [confirmPassword, setConfirmPassword] = React.useState('');
 
 	const [displayError, setDisplayError] = React.useState(null);
+	const [displaySuccess, setDisplaySuccess] = React.useState(null);
 
 	async function register() {
 		if(password != confirmPassword) return;
@@ -95,7 +104,7 @@ export const Account_Register: React.FC = () => {
 		});
 		if (response?.status === 200) {
 			localStorage.setItem('userName', name);
-			
+			setDisplaySuccess(`✅ You are now registered!`)
 		} else {
 			const body = await response.json();
 			setDisplayError(`⚠ Error: ${body.msg}`);
@@ -126,6 +135,7 @@ export const Account_Register: React.FC = () => {
         </div>
 		<Button className="w-100" onClick={() => register()}>Create Account</Button>
 		<MessageDialog message={displayError} onHide={() => setDisplayError(null)} />
+		<MessageDialogLink message={displaySuccess} to={"/join-host"} />
 		</Container>
 		</>
 	)

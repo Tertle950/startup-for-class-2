@@ -51,11 +51,26 @@ const Home: React.FC = () => {
 };
 
 const MainPage: React.FC = () => {
+	const [ userName, setUserName ] = React.useState(localStorage.getItem("userName"));
+	
+	window.addEventListener('storage', () => {
+		var userNameInStorage = localStorage.getItem("userName");
+		if(userNameInStorage) setUserName(userNameInStorage);
+		else setUserName('');
+	})
+
+	function logout() {
+		localStorage.clear();
+		window.dispatchEvent(new Event("storage"));
+	}
+
 	return (
 	<BrowserRouter>
 		<header className="navbar bg-dark text-white site-header sticky-top py-2 justify-content-between">
 			<div className="container">
 				<h1>Not Too High</h1>
+				<p>{userName ? `Hello, ${userName}` : ""}</p>
+				<Link to="#" onClick={() => logout()} hidden={userName ? false : true}><Button variant="outline-secondary">Log out</Button></Link>
 				<Link to="/"><Button className="btn-secondary">Home</Button></Link>
 			</div>
 		</header>

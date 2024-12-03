@@ -92,7 +92,10 @@ export const Account_Register: React.FC = () => {
 	const [displaySuccess, setDisplaySuccess] = React.useState(null);
 
 	async function register() {
-		if(password != confirmPassword) return;
+		if(password != confirmPassword) {
+			setDisplayError(`⚠ Passwords do not match!`);
+			return;
+		};
 
 		const endpoint: string = "/api/auth/create";
 		const response = await fetch(endpoint, {

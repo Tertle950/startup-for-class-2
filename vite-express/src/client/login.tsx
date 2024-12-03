@@ -53,6 +53,9 @@ export const Account_Login: React.FC = () => {
 		});
 		if (response?.status === 200) {
 			localStorage.setItem('userName', userName);
+			const responseJson = await response.json();
+			localStorage.setItem('token', responseJson.token);
+
 			setDisplaySuccess(`✅ You are now logged in!`);
 		} else {
 			const body = await response.json();
@@ -107,7 +110,10 @@ export const Account_Register: React.FC = () => {
 		});
 		if (response?.status === 200) {
 			localStorage.setItem('userName', name);
-			setDisplaySuccess(`✅ You are now registered!`)
+			const responseJson = await response.json();
+			localStorage.setItem('token', responseJson.token);
+			
+			setDisplaySuccess(`✅ You are now registered!`);
 		} else {
 			const body = await response.json();
 			setDisplayError(`⚠ Error: ${body.msg}`);

@@ -42,10 +42,9 @@ const Home: React.FC = () => {
 				We don't have much of anything right now...Check back soon!
 			</p>
 			<p>
-				<b><Link to="/join-host">Click here to start playing!</Link></b>
-			</p>
-			<p>
-				<b><Link to="/account">Click here to go to the non-working login screen!</Link></b>
+				<b>
+					<Link to={localStorage.getItem("token") ? "/join-host" : "/account"}>Click here to start playing!</Link>
+				</b>
 			</p>
 		</Container>
 	);

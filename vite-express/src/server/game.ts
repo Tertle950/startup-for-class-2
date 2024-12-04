@@ -27,53 +27,54 @@ const startingDeck: number[] = [
 	8,8,8,8,
 	9,9,9,9,
 	10,10,10,10,
-	11,11,11,11,11,11,
-	12,12,12,12,12,12,
-	13,13,13,13,13,13,
-	14
+	//11,11,11,11,11,11,
+	//12,12,12,12,12,12,
+	//13,13,13,13,13,13,
+	//14
 ];
 
 class Player {
 	hand: number[] = [];
 
-	makeDecision(gameState: GameState, camel: number, cardOnTop: number) {
-		var cardPlayed: number | undefined = this.hand.pop();
-		if(cardPlayed) {
-			var cardPlayed: 
-		}
+	playCard(gameState: GameState, card: number): boolean {
+		var cardLocation = this.hand.indexOf(card);
+		if(cardLocation == -1) return false;
+		this.drawCard();
+
+		return true;
+	}
+
+	drawCard(gameState: GameState) {
 		this.hand.push(gameState.drawCard());
-		return cardPlayed;
 	}
 }
 
 // I LOVE STACKOVERFLOW
 // https://stackoverflow.com/a/2450976
 function shuffle(array: any[]) {
-  let currentIndex = array.length;
-
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
+	let currentIndex = array.length;
+	// While there remain elements to shuffle...
+	while (currentIndex != 0) {
+		// Pick a remaining element...
+		let randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+		// And swap it with the current element.
+		[array[currentIndex], array[randomIndex]] = [
+		array[randomIndex], array[currentIndex]];
+	}
 }
 
 export class GameState {
 	deck: number[] = [...startingDeck];
 
 	camel: number = 0;
+	camelLimit: number = 50;
 	cardOnTop: number = 0;
 
 	handSize = 4;
 
 	reshuffleDeck(): void {
-		this.deck = [...startingDeck];
+		this.deck = [...startingDeck]; // TODO innacurate but cannot care rn
 		shuffle(this.deck);
 	}
 
@@ -81,7 +82,24 @@ export class GameState {
 		var card: number | undefined = this.deck.pop();
 		if(card) {
 			return card;
+		} else {
+			this.reshuffleDeck()
+			return this.drawCard();
 		}
-		
+	}
+
+	addCard(card: number): boolean {
+		// True if game keeps going. False if camel's back is broken.
+		this.cardOnTop = card;
+		this.camel += card;
+		return this.camel <= this.camelLimit;
+	}
+
+	getCamel(): number {
+		return this.camel;
+	}
+	
+	getCardOnTop(): number {
+		return this.cardOnTop;
 	}
 }

@@ -65,8 +65,7 @@ export const JoinHost_Join: React.FC = () => {
 									{selectedGame}
 								</Dropdown.Toggle>
 								<Dropdown.Menu>
-									<Dropdown.Item eventKey="Straw">Straw</Dropdown.Item>
-                                    <Dropdown.Item eventKey="Straw25">Straw 25 (test variant)</Dropdown.Item>
+									<Dropdown.Item eventKey="Simple">Simple</Dropdown.Item>
 								</Dropdown.Menu>
 							</Dropdown>
 							<Form.Control aria-label="ID" placeholder="XXXXX" value={code} onChange={(e) => codeOnChange(e)} type="text" />
@@ -112,8 +111,7 @@ export const JoinHost_Host: React.FC = () => {
 							{selectedGame}
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
-							<Dropdown.Item eventKey="Straw">Straw</Dropdown.Item>
-							<Dropdown.Item eventKey="Straw25">Straw 25 (test variant)</Dropdown.Item>
+							<Dropdown.Item eventKey="Simple">Simple</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>
 					<InputGroupText>{code}</InputGroupText>

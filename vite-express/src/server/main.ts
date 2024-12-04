@@ -42,7 +42,7 @@ class Game {
 
 const app = express();
 
-const PORT: number = process.argv.length > 2 ? process.argv[2] : 3000;
+const PORT: number = /*process.argv.length > 2 ? process.argv[2] :*/ 3000;
 
 // -- User stuff
 
@@ -108,7 +108,7 @@ apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req, 
   if (user) {
     if (Sha256.hash(user.salt + req.body.password) === user.password) {
       user.token = uuidv4();
-      res.send({ token: user.token });
+      res.send({ token: user.token, userName: user.name });
       return;
     }
   }

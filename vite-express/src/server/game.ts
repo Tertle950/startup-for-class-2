@@ -35,17 +35,23 @@ const startingDeck: number[] = [
 
 class Player {
 	hand: number[] = [];
+	gameState: GameState;
 
-	playCard(gameState: GameState, card: number): boolean {
-		var cardLocation = this.hand.indexOf(card);
-		if(cardLocation == -1) return false;
+	constructor(gameState: GameState) {
+		this.gameState = gameState
 		this.drawCard();
-
-		return true;
 	}
 
-	drawCard(gameState: GameState) {
-		this.hand.push(gameState.drawCard());
+	playCard(card: number): boolean | null {
+		// null if card doesn't exist, true/false if card is played (did you break camel's back?)
+		var cardLocation = this.hand.indexOf(card);
+		if(cardLocation == -1) return null;
+		this.drawCard();
+		return this.gameState.addCard(card);
+	}
+
+	drawCard() {
+		this.hand.push(this.gameState.drawCard());
 	}
 }
 

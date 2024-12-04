@@ -2,7 +2,7 @@ import express from "express";
 import ViteExpress from "vite-express";
 import { v4 as uuidv4 } from 'uuid';
 
-import GameState from "./game.ts";
+import { GameState } from "./game.ts";
 import Sha256 from './sha256.js';
 
 import { MongoClient } from 'mongodb';
@@ -12,20 +12,11 @@ const wss = new WebSocketServer({ port: 9900 });
 
 // -- MongoDB creds import
 import config from './dbConfig.json';
+import { JsonWebKeyInput } from "crypto";
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
 const client = new MongoClient(url);
 const db = client.db('rental');
-
-db.dropDatabase();
-
-(async function testConnection() {
-  await client.connect();
-  await db.command({ ping: 1 });
-})().catch((ex) => {
-  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
-  process.exit(1);
-});
 
 // -- Classes
 
@@ -34,10 +25,10 @@ class User {
 	email: string;
 	password: string;
   salt: string;
-	token: string;
+	token: string | null;
   //loginTime: number;
 
-	constructor(name: string, email: string, password: string, salt: string, token: string) {
+	constructor(name: string, email: string, password: string, salt: string, token: string | null) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -67,6 +58,37 @@ const app = express();
 const PORT: number = /*process.argv.length > 2 ? process.argv[2] :*/ 3000;
 
 // -- User stuff
+
+const userCollection = client.db('not-too-high').collection('users');
+
+//await userCollection.insertOne(new User("test", "test@example.com", "test", "", null));
+//fetchUser("test@example.com");
+
+async function fetchUser(email: string): Promise<User | null> {
+  const query = { email: email };
+
+  const matches = await userCollection.find(query).toArray();
+
+  //console.log(matches);
+
+  if(matches.length == 0) return null;
+  const theMatch = matches[0];
+
+  return new User(theMatch.name, theMatch.email, theMatch.password, theMatch.salt, null);
+}
+
+console.log()
+
+async function findUser(email: string): Promise<User | null> {
+  const userArray = users.get(email);
+  if(userArray) return userArray;
+
+  const userDb = await fetchUser(email);
+  if(userDb != null) {
+    users.set(email, userDb);
+  }
+  return null; 
+}
 
 // The users are currently saved in memory and disappear whenever the service is restarted.
 let users = new Map<string, User>([]);
@@ -107,7 +129,7 @@ apiRouter.post('/test', async (req, res) => {
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), async (req, res) => {
-  const user = users.get(req.body.email);
+  const user = await fetchUser(req.body.email);
   if (user) {
     res.status(409).send({ msg: 'Existing user' });
   } else {
@@ -119,15 +141,14 @@ apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), asy
       uuidv4()
     );
     users.set(req.body.email, user);
-    
-
+    userCollection.insertOne(user);
     res.send({ token: user.token });
   }
 });
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req, res) => {
-  const user = users.get(req.body.email);
+  const user = await fetchUser(req.body.email);
   if (user) {
     if (Sha256.hash(user.salt + req.body.password) === user.password) {
       user.token = uuidv4();

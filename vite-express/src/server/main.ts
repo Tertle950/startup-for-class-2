@@ -5,6 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import GameState from "./game.ts";
 import Sha256 from './sha256.js';
 
+import { WebSocketServer } from 'ws';
+const wss = new WebSocketServer({ port: 9900 });
+
 // -- Classes
 
 class User {

@@ -22,6 +22,8 @@ export interface IsPrimaryProps {
 	IsPrimary: boolean;
 }
 
+const socket = new WebSocket('ws://localhost:9900');
+
 export const JoinHost: React.FC<IsPrimaryProps> = ({ IsPrimary = true }) => {
 	return (
 		<Container>

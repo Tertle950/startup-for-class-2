@@ -5,8 +5,27 @@ import { v4 as uuidv4 } from 'uuid';
 import GameState from "./game.ts";
 import Sha256 from './sha256.js';
 
+import { MongoClient } from 'mongodb';
+
 import { WebSocketServer } from 'ws';
 const wss = new WebSocketServer({ port: 9900 });
+
+// -- MongoDB creds import
+import config from './dbConfig.json';
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+
+const client = new MongoClient(url);
+const db = client.db('rental');
+
+db.dropDatabase();
+
+(async function testConnection() {
+  await client.connect();
+  await db.command({ ping: 1 });
+})().catch((ex) => {
+  console.log(`Unable to connect to database with ${url} because ${ex.message}`);
+  process.exit(1);
+});
 
 // -- Classes
 
@@ -21,7 +40,7 @@ class User {
 	constructor(name: string, email: string, password: string, salt: string, token: string) {
 		this.name = name;
 		this.email = email;
-		this.password = password; // TODO needs more security
+		this.password = password;
     this.salt = salt;
 		this.token = token;
     //this.loginTime = Date.now();
@@ -95,11 +114,12 @@ apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), asy
 		const user: User = new User(
       req.body.name,
       req.body.email,
-      Sha256.hash("thisisassault" + req.body.password),
+      Sha256.hash("thisisassault" + req.body.password), // password is hashed! :)
       "thisisassault", // this is a salt (a very simple one...)
       uuidv4()
     );
     users.set(req.body.email, user);
+    
 
     res.send({ token: user.token });
   }

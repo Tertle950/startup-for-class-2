@@ -55,7 +55,7 @@ class Game {
 
 const app = express();
 
-const PORT: number = /*process.argv.length > 2 ? process.argv[2] :*/ 3000;
+const PORT: number = 4000;
 
 // -- User stuff
 

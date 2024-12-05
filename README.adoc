@@ -85,6 +85,8 @@ Just needs a little WebSocket magic now...
 
 The biggest lesson I learned is to do things the intended way first, if you want the class to be over with already.
 
+Should probably mention: Because of jank, I start the service manually with "npx tsx main.ts".
+
 == VIVA LA RESISTANCE
 I have taken this class before and failed. The primary reason? My own skill issue.
 

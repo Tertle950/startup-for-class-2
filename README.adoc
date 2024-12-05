@@ -74,6 +74,17 @@ Once I am done with this freaking class, I will never touch web development agai
 === Service deliverable
 It's gonna be late too!!!
 
+=== Login deliverable
+Well, it's late. But it's FINISHED now.
+
+The directory for the deliverable is `service-refactored`. It took me a bit too long to get to this point.
+
+But now, vite has a nodejs friend that handles logging in, and is almost ready to handle running the game!
+
+Just needs a little WebSocket magic now...
+
+The biggest lesson I learned is to do things the intended way first, if you want the class to be over with already.
+
 == VIVA LA RESISTANCE
 I have taken this class before and failed. The primary reason? My own skill issue.
 

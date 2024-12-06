@@ -40,7 +40,7 @@ export const JoinHost: React.FC<IsPrimaryProps> = ({ IsPrimary = true }) => {
 
 export const JoinHost_Join: React.FC = () => {
     // State to store the selected game text
-    const [selectedGame, setSelectedGame] = useState("Straw");
+    const [selectedGame, setSelectedGame] = useState("Simple");
 	const [code, setCode] = useState("");
 	const [canPlay, setCanPlay] = useState(false);
 
@@ -88,9 +88,9 @@ export const JoinHost_Join: React.FC = () => {
 }
 
 export const JoinHost_Host: React.FC = () => {
-	const [selectedGame, setSelectedGame] = useState("(select)");
+	const [selectedGame, setSelectedGame] = useState("Simple");
 	const [code, setCode] = useState("#####");
-	const [canPlay, setCanPlay] = useState(false);
+	const [canPlay, setCanPlay] = useState(true);
 
 	// Handler for selecting an option from the dropdown
     const handleSelect = (eventKey: string | null) => {

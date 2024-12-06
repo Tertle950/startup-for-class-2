@@ -33,12 +33,17 @@ const startingDeck: number[] = [
 	//14
 ];
 
-class Player {
+export class Player {
 	hand: number[] = [];
 	gameState: GameState;
+	user: string;
 
-	constructor(gameState: GameState) {
-		this.gameState = gameState
+	constructor(gameState: GameState, user: string) {
+		this.gameState = gameState;
+		this.user = user;
+		this.drawCard();
+		this.drawCard();
+		this.drawCard();
 		this.drawCard();
 	}
 

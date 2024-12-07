@@ -178,7 +178,7 @@ app.on('upgrade', (request: any, socket: any, head: any) => {
 
 // -- Generic Express code
 
-app.use((_req, res) => {
+app.use((_req: any, res: any) => {
   res.sendFile('index.html', { root: 'public' });
 });
 

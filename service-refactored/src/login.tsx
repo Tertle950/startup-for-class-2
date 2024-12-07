@@ -15,7 +15,7 @@ import {
 import {
 	MessageDialog,
 	MessageDialogLink
-} from './messageDialog.js';
+} from './messageDialog.jsx';
 
 import {
 	IsPrimaryProps

@@ -31,6 +31,8 @@ import {
 
 import {Play} from './play.tsx';
 
+//import WebSocket from 'ws';
+
 const Home: React.FC = () => {
 	return (
 		<Container>
@@ -63,6 +65,18 @@ const MainPage: React.FC = () => {
 		localStorage.clear();
 		window.dispatchEvent(new Event("storage"));
 	}
+
+	/*
+	React.useEffect(() => {
+		const socket = new WebSocket('ws://localhost:9900');
+
+		socket.onmessage = (event) => {
+			console.log('received: ', event.data);
+		};
+
+		socket.send('I am listening');
+	})
+	// */
 
 	return (
 	<BrowserRouter>

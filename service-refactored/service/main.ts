@@ -8,7 +8,6 @@ import Sha256 from './sha256.js';
 import { MongoClient } from 'mongodb';
 
 import { WebSocketServer } from 'ws';
-const wss = new WebSocketServer({ port: 9900 });
 
 // -- MongoDB creds import
 import config from './dbConfig.json';
@@ -20,7 +19,7 @@ const db = client.db('rental');
 
 // -- Classes
 
-class User {
+export class User {
 	name: string;
 	email: string;
 	password: string;
@@ -38,18 +37,6 @@ class User {
 	}
 }
 
-class Game {
-	id: number;
-	game: string;
-	state: GameState;
-
-	constructor(id: number, game: string, state: GameState) {
-		this.id = id;
-		this.game = game;
-		this.state = state;
-	}
-}
-
 //var testGame = new Game(1, "s", new GameState());
 // It works! Don't listen to vscode.
 
@@ -63,6 +50,9 @@ const userCollection = client.db('not-too-high').collection('users');
 
 //await userCollection.insertOne(new User("test", "test@example.com", "test", "", null));
 //fetchUser("test@example.com");
+
+// The users are currently saved in memory and disappear whenever the service is restarted.
+let users = new Map<string, User>([]);
 
 async function fetchUser(email: string): Promise<User | null> {
   const query = { email: email };
@@ -88,9 +78,6 @@ async function findUser(email: string): Promise<User | null> {
   return null; 
 }
 
-// The users are currently saved in memory and disappear whenever the service is restarted.
-let users = new Map<string, User>([]);
-
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
@@ -100,7 +87,7 @@ app.use(`/api`, apiRouter);
 
 // Stolen from StackOverflow!
 // https://stackoverflow.com/a/59915458
-const requireParams = params => (req, res, next) => {
+const requireParams = (params: any[]) => (req: any, res: any, next: any) => {
   const reqParamList = Object.keys(req.body);
   //console.log(reqParamList);
   const hasAllRequiredParams = params.every(param =>
@@ -126,7 +113,7 @@ apiRouter.post('/test', async (req, res) => {
 */
 
 // CreateAuth a new user
-apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), async (req, res) => {
+apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), async (req: any, res: any) => {
   const user = await fetchUser(req.body.email);
   if (user) {
     res.status(409).send({ msg: 'Existing user' });
@@ -145,7 +132,7 @@ apiRouter.post('/auth/create', requireParams(["name", "email", "password"]), asy
 });
 
 // GetAuth login an existing user
-apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req, res) => {
+apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req: any, res: any) => {
   const user = await fetchUser(req.body.email);
   if (user) {
     if (Sha256.hash(user.salt + req.body.password) === user.password) {
@@ -158,7 +145,7 @@ apiRouter.post('/auth/login', requireParams(["email", "password"]), async (req, 
 });
 
 // DeleteAuth logout a user
-apiRouter.delete('/auth/logout', requireParams(["token"]), (req, res) => {
+apiRouter.delete('/auth/logout', requireParams(["token"]), (req: any, res: any) => {
   const user = Object.values(users).find((u) => u.token === req.body.token);
   if (user) {
     delete user.token;
@@ -167,14 +154,29 @@ apiRouter.delete('/auth/logout', requireParams(["token"]), (req, res) => {
 });
 
 // Default error handler
-app.use(function (err, req, res, next) {
+app.use(function (err: any, req: any, res: any, next: any) {
   res.status(500).send({ type: err.name, message: err.message });
 });
 
+/*
 apiRouter.get('/auth/list', async (req, res) => {
 	console.log(users);
 	res.status(418).end();
 })
+*/
+
+// -- WebSocket code?
+// Create a websocket object
+const wss = new WebSocketServer({ noServer: true });
+
+// Handle the protocol upgrade from HTTP to WebSocket
+app.on('upgrade', (request: any, socket: any, head: any) => {
+  wss.handleUpgrade(request, socket, head, function done(ws) {
+    wss.emit('connection', ws, request);
+  });
+});
+
+// -- Generic Express code
 
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
